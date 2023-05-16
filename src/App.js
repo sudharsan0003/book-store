@@ -1,29 +1,37 @@
 import React from 'react'
 import {Fragment} from 'react';
+import Form from './components/Form';
+import {BsCart2} from 'react-icons/bs';
 
 
 const App = () => {
   return (
   <Fragment>
-  <BookStore />
+    <Form/>
+    <BookStore />
   </Fragment>
   );
 };
 
-export default App;
-
 const Book = (props) => {
   console.log(props);
+
+  const clickHandler = (bookTitle)=>{
+    console.log(`${bookTitle} added to cart`);
+  };
   return <article className='book-sheet'>
     <div >
       <img className='img-book' src={props.imageUrl} alt={props.bookTitle}/>
     </div>
     <h3 className='book-title'>{props.bookTitle}</h3>
     <h4 className='book-price'>{props.bookPrice}</h4>
+    <div className="btn-container">
+    <button className = 'btn-cart' type='button' onClick={()=> {clickHandler(props.bookTitle)}}>
+    Add to cart  <BsCart2  className='cart-img'/>
+    </button>
+    </div>
   </article>
 };
-
-
 
 export const BookStore= () => {
   return (
@@ -60,3 +68,5 @@ export const BookStore= () => {
   </section>
   );
 };
+
+export default App;
